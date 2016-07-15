@@ -106,9 +106,9 @@ public class HumidityDao {
 		PreparedStatement pst;
 		try {
 
-			String sql = "select humidity,datetime,point from humidity where datetime in (select max(datetime) from humidity group by point) order by point asc";
+//			String sql = "select humidity,datetime,point from humidity where datetime in (select max(datetime) from humidity group by point) order by point asc";
 //			String sql = "select max(datetime)datetime, point,humidity from humidity group by point";
-//			String sql = "select a.* from humidity a,(select point,max(datetime) datetime from humidity group by point) b where a.datetime = b.datetime and a.point = b.point";
+			String sql = "select a.* from humidity a,(select point,max(datetime) datetime from humidity group by point) b where a.datetime = b.datetime and a.point = b.point order by a.point asc";
 //			select a.* from table a,
 //			(select 姓名,max(开始日期) 日期 from table group by 姓名) b where a.姓名=b.姓名 and a.开始日期=b.日期
 			

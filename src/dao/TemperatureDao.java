@@ -106,8 +106,9 @@ public class TemperatureDao {
 		PreparedStatement pst;
 		try {
 
-			String sql = "select temperature,datetime,point from temperature where datetime in (select max(datetime) from temperature group by point) order by point asc";
+//			String sql = "select temperature,datetime,point from temperature where datetime in (select max(datetime) from temperature group by point) order by point asc";
 //			String sql = "select temperature,datetime from temperature where datetime=(select max(datetime) from temperature)";
+			String sql = "select a.* from temperature a,(select point,max(datetime) datetime from temperature group by point) b where a.datetime = b.datetime and a.point = b.point order by a.point asc";
 			pst = conn.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			
